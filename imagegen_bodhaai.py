@@ -8,7 +8,8 @@ st.set_page_config("Bodha AI by Skandan", layout="wide")
 st.title("Bodha AI")
 
 client = InferenceClient(
-    model="runwayml/stable-diffusion-v1-5",
+    model="black-forest-labs/FLUX.1-schnell
+",
     token=st.secrets["HF_TOKEN"]
 )
 col1, col2 = st.columns(2)
