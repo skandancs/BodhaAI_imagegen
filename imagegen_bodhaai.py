@@ -2,14 +2,14 @@ import streamlit as st
 from huggingface_hub import InferenceClient
 from PIL import Image
 import io
-from diffusers import DiffusionPipeline
-import torch
+
 
 st.set_page_config("Bodha AI by Skandan", layout="wide")
 st.title("Bodha AI")
 
-pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16, use_safetensors=True, variant="fp16")
-pipe.to("cuda")
+client = InferenceClient(
+    model="runwayml/stable-diffusion-v1-5",
+    token=st.secrets["HF_TOKEN"]
 
 col1, col2 = st.columns(2)
 
@@ -17,11 +17,13 @@ st.image("bodhaai.jpeg", width=150, caption="Bodha AI")
 
 with col1:
     inputprompt = st.text_input("Enter the Description")
-
-    if st.button("Generate Content"):
+    
+if st.button("Generate Image"):
+    if not prompt.strip():
+        st.warning("Prompt cannot be empty")
+    else:
         with st.spinner("Generating image..."):
-            image = pipe(inputprompt=inputprompt).image[0]
-            st.session_state.image = image
+            image = client.text_to_image(inputprompt)
 
 with col2:
     if "image" in st.session_state:
