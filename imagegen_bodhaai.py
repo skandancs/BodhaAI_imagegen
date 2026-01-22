@@ -1,19 +1,19 @@
 import streamlit as st
 from huggingface_hub import InferenceClient
 from PIL import Image
-import io
-
+import os
 
 st.set_page_config("Bodha AI by Skandan", layout="wide")
 st.title("Bodha AI")
 
 client = InferenceClient(
-    model="black-forest-labs/FLUX.1-schnell",
-    token=st.secrets["HF_TOKEN"]
+    provider="nscale",
+    api_key=os.environ["HF_TOKEN"],
 )
 col1, col2 = st.columns(2)
 
 st.image("bodhaai.jpeg", width=150, caption="Bodha AI")
+
 
 with col1:
     prompt = st.text_input("Enter the Description")
@@ -23,7 +23,10 @@ if st.button("Generate Image"):
         st.warning("Prompt cannot be empty")
     else:
         with st.spinner("Generating image..."):
-            image = client.text_to_image(prompt)
+            image = client.text_to_image(
+                    "{prompt}",
+                    model="stabilityai/stable-diffusion-xl-base-1.0",
+)
 
 with col2:
     if "image" in st.session_state:
