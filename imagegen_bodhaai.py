@@ -16,14 +16,14 @@ col1, col2 = st.columns(2)
 st.image("bodhaai.jpeg", width=150, caption="Bodha AI")
 
 with col1:
-    inputprompt = st.text_input("Enter the Description")
+    prompt = st.text_input("Enter the Description")
     
 if st.button("Generate Image"):
     if not prompt.strip():
         st.warning("Prompt cannot be empty")
     else:
         with st.spinner("Generating image..."):
-            image = client.text_to_image(inputprompt)
+            image = client.text_to_image(prompt)
 
 with col2:
     if "image" in st.session_state:
