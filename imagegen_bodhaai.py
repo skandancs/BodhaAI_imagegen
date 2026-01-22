@@ -10,7 +10,7 @@ st.title("Bodha AI")
 client = InferenceClient(
     model="runwayml/stable-diffusion-v1-5",
     token=st.secrets["HF_TOKEN"]
-
+)
 col1, col2 = st.columns(2)
 
 st.image("bodhaai.jpeg", width=150, caption="Bodha AI")
