@@ -29,7 +29,7 @@ if st.button("Generate Image"):
                     model="stabilityai/stable-diffusion-xl-base-1.0",
 )
 # st.session_state.image = image
-st.session_state.image = image
+        st.session_state.image = image
 with col2:
     if "image" in st.session_state:
         st.image(st.session_state.image, width=400)
