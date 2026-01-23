@@ -27,9 +27,11 @@ if st.button("Generate Image"):
                     prompt,
                     model="stabilityai/stable-diffusion-xl-base-1.0",
 )
+# st.session_state.image = image
 st.session_state.image = image
+photo=image
 with col2:
-    if "image" in st.session_state:
+    if "photo" in st.session_state:
         st.image(st.session_state.image, width=400)
 
         img_buffer = io.BytesIO()
