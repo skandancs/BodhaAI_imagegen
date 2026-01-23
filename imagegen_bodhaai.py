@@ -24,7 +24,7 @@ if st.button("Generate Image"):
     else:
         with st.spinner("Generating image..."):
             image = client.text_to_image(
-                    "{prompt}",
+                    prompt,
                     model="stabilityai/stable-diffusion-xl-base-1.0",
 )
 
