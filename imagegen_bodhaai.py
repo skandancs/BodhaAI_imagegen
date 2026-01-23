@@ -2,6 +2,7 @@ import streamlit as st
 from huggingface_hub import InferenceClient
 from PIL import Image
 import os
+import io
 
 st.set_page_config("Bodha AI by Skandan", layout="wide")
 st.title("Bodha AI")
